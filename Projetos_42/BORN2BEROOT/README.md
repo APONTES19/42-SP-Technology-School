@@ -1,6 +1,3 @@
-[![Instalando um Servidor SSH com Debian 11](http://img.youtube.com/vi/--CODIFODOVIDEO--/0.jpg)](HTTP://WWW.YOUTUBE.COM/WATCH?V=--COD--"Vídeo do passo a passo monstrado abaixo")
-
-
 [![Instalando um Servidor SSH com Debian 11](http://img.youtube.com/vi/OqOzyvsS_hk/0.jpg)](http://www.youtube.com/watch?v=OqOzyvsS_hk "Vídeo do passo a passo monstrado abaixo")
 
 
