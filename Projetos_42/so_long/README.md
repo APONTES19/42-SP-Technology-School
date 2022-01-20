@@ -1,2 +1,2 @@
-Este é o Projeto do Game 2D
-this a projetc the game 2D
+Projeto So_Long , reproduzir um desenho 2d utilizando uma biblioteca minilibx
+
