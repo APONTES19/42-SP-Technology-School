@@ -1,3 +1,3 @@
 # 42-SP-Technology-School
-Exercícios desenvolvidos durante o basecamp da escola 42 em junho de 2021
+Exercícios e projetos desenvolvidos durante o basecamp e formação  da escola 42sp iniciada em junho de 2021
 <br>Lucas Martins Apontes </br>
