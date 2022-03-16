@@ -6,16 +6,9 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 10:02:36 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/03/16 16:56:46 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/03/16 19:01:31 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-typedef struct s_so_long
-{
-	t_map	map;
-	t_win	win;
-	t_img	img;
-}	t_sl;
 
 typedef struct s_map
 {
@@ -46,3 +39,9 @@ typedef struct s_img
 	int		endian;
 }	t_img;
 
+typedef struct s_so_long
+{
+	t_map	map;
+	t_win	win;
+	t_img	img;
+}	t_sl;
