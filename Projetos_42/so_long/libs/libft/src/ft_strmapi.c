@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   1_abrir_tela.c                                     :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/24 13:49:23 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/03/16 11:33:38 by lucasmar         ###   ########.fr       */
+/*   Created: 2021/10/01 13:33:51 by lucasmar          #+#    #+#             */
+/*   Updated: 2021/10/01 13:35:59 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <mlx.h>
-#include <stdlib.h>
+#include "libft.h"
 
-typedef struct window
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	void	*mlx_ptr;
-	void	*win;
-}			t_struct;
+	char			*string;
+	unsigned int	counter;
 
-int	main(void)
-{
-	t_struct	window;
-
-	window.mlx_ptr = mlx_init();
-	window.win = mlx_new_window(window.mlx_ptr, 400, 800, "My firt window");
-	mlx_loop(window.mlx_ptr);
-	return (0);
+	(string = ft_strdup(s));
+	if (!s || !f || !string)
+		return (0);
+	counter = 0;
+	while (string[counter])
+	{
+		string[counter] = f(counter, string[counter]);
+		counter++;
+	}
+	return (string);
 }

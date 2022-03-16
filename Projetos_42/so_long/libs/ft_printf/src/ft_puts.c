@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   1_abrir_tela.c                                     :+:      :+:    :+:   */
+/*   ft_puts.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/24 13:49:23 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/03/16 11:33:38 by lucasmar         ###   ########.fr       */
+/*   Created: 2021/10/01 15:17:44 by lucasmar          #+#    #+#             */
+/*   Updated: 2021/11/14 16:22:31 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <mlx.h>
-#include <stdlib.h>
+#include "ft_printf.h"
 
-typedef struct window
+int	ft_puts(const char *s)
 {
-	void	*mlx_ptr;
-	void	*win;
-}			t_struct;
+	int	count;
 
-int	main(void)
-{
-	t_struct	window;
-
-	window.mlx_ptr = mlx_init();
-	window.win = mlx_new_window(window.mlx_ptr, 400, 800, "My firt window");
-	mlx_loop(window.mlx_ptr);
-	return (0);
+	if (s == NULL)
+		return (ft_puts("(null)"));
+	count = 0;
+	while (s[count] != '\0')
+	{
+		ft_putc(s[count]);
+		count++;
+	}
+	return (count);
 }

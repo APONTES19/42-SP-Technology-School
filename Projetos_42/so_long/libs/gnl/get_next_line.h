@@ -1,30 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   1_abrir_tela.c                                     :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/24 13:49:23 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/03/16 11:33:38 by lucasmar         ###   ########.fr       */
+/*   Created: 2021/10/18 15:14:14 by lucasmar          #+#    #+#             */
+/*   Updated: 2022/03/07 12:12:09 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <mlx.h>
-#include <stdlib.h>
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-typedef struct window
-{
-	void	*mlx_ptr;
-	void	*win;
-}			t_struct;
+#include "../../headers/so_long.h"
 
-int	main(void)
-{
-	t_struct	window;
+char	*get_next_line(int fd);
+void	read_doc(int fd, char **buffer, char **bytes_read, char **result);
+void	line(char **bytes_read, char **result);
 
-	window.mlx_ptr = mlx_init();
-	window.win = mlx_new_window(window.mlx_ptr, 400, 800, "My firt window");
-	mlx_loop(window.mlx_ptr);
-	return (0);
-}
+#endif

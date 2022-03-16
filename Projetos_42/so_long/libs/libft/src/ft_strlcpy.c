@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   1_abrir_tela.c                                     :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/24 13:49:23 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/03/16 11:33:38 by lucasmar         ###   ########.fr       */
+/*   Created: 2021/09/15 14:15:39 by lucasmar          #+#    #+#             */
+/*   Updated: 2021/10/03 17:44:49 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <mlx.h>
-#include <stdlib.h>
+#include "libft.h"
 
-typedef struct window
+size_t	ft_strlcpy(char *to, const char *from, size_t tosize)
 {
-	void	*mlx_ptr;
-	void	*win;
-}			t_struct;
+	size_t	c;
 
-int	main(void)
-{
-	t_struct	window;
-
-	window.mlx_ptr = mlx_init();
-	window.win = mlx_new_window(window.mlx_ptr, 400, 800, "My firt window");
-	mlx_loop(window.mlx_ptr);
-	return (0);
+	c = 0;
+	if (to == NULL || from == NULL)
+		return (0);
+	if (tosize)
+	{
+		while (from[c] != '\0' && c < (tosize - 1))
+		{
+			to[c] = from[c];
+			c++;
+		}
+		to[c] = '\0';
+	}
+	return (ft_strlen((char *)from));
 }

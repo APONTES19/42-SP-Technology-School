@@ -1,10 +1,11 @@
-Projeto So_Long , reproduzir um desenho 2d utilizando uma biblioteca minilibx
+Projeto So_Long , reproduzir um jogo 2d utilizando a biblioteca minilibx
 
-Usando preparando a máquina para rodar a minilibx
+Preparar a máquina para rodar a minilibx
+cd ./libs/mlk
 ./configure
-assim dentro da pasta lib/mlx/
 
-para compilar os testes use as flags
+
+para compilar os testes da minilibx use as flags
 
 clang abrir_tela_mlx.c  -I ../lib/mlx/ -L ../lib/mlx/ -lmlx -Ilmlx -lXext -lX11 ../lib/mlx/libmlx.a
 
@@ -16,4 +17,9 @@ abrir_tela_mlx.c  ==> arquivo a ser compilado
 -Ilmlx ==> comando da biblioteca
 -lXext ==> comando da biblioteca
 -lX11 ../lib/mlx/libmlx.a  ==> caminho da biblioteca mlx
+
+Compilando o game so_longo
+make
+
+Para rodar o game
 

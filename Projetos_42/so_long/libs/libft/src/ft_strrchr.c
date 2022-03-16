@@ -1,30 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   1_abrir_tela.c                                     :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/24 13:49:23 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/03/16 11:33:38 by lucasmar         ###   ########.fr       */
+/*   Created: 2021/09/18 15:43:21 by lucasmar          #+#    #+#             */
+/*   Updated: 2021/10/16 10:59:36 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <mlx.h>
-#include <stdlib.h>
+#include "libft.h"
 
-typedef struct window
+char	*ft_strrchr(const char *str, int ch)
 {
-	void	*mlx_ptr;
-	void	*win;
-}			t_struct;
+	int		c ;
+	int		len_str;
+	char	*pointer;
 
-int	main(void)
-{
-	t_struct	window;
-
-	window.mlx_ptr = mlx_init();
-	window.win = mlx_new_window(window.mlx_ptr, 400, 800, "My firt window");
-	mlx_loop(window.mlx_ptr);
-	return (0);
+	pointer = NULL;
+	c = 0;
+	len_str = ft_strlen((char *)str);
+	if (ch == '\0')
+		return ((char *)str + len_str);
+	while (*str != '\0')
+	{
+		if (*str == ch)
+			pointer = ((char *)str);
+		str++;
+	}
+	return (pointer);
 }

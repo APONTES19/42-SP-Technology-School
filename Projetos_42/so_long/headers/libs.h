@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   1_abrir_tela.c                                     :+:      :+:    :+:   */
+/*   libs.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/24 13:49:23 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/03/16 11:33:38 by lucasmar         ###   ########.fr       */
+/*   Created: 2022/02/24 11:55:28 by lucasmar          #+#    #+#             */
+/*   Updated: 2022/03/16 15:12:36 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <mlx.h>
-#include <stdlib.h>
+#ifndef LIBS_H
+# define LIBS_H
 
-typedef struct window
-{
-	void	*mlx_ptr;
-	void	*win;
-}			t_struct;
+#include<stdio.h>
+#include<stdlib.h>
+#include <unistd.h>
+#include "../libs/ft_printf/headers/ft_printf.h"
+#include "../libs/libft/headers/libft.h"
+#include "../libs/gnl/get_next_line.h"
 
-int	main(void)
-{
-	t_struct	window;
+#include <fcntl.h>
+#include <../libs/mlx/mlx.h>
 
-	window.mlx_ptr = mlx_init();
-	window.win = mlx_new_window(window.mlx_ptr, 400, 800, "My firt window");
-	mlx_loop(window.mlx_ptr);
-	return (0);
-}
+#endif

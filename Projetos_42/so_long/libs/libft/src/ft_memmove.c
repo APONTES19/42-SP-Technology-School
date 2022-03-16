@@ -1,30 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   1_abrir_tela.c                                     :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/24 13:49:23 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/03/16 11:33:38 by lucasmar         ###   ########.fr       */
+/*   Created: 2021/09/29 10:09:00 by lucasmar          #+#    #+#             */
+/*   Updated: 2021/10/02 20:45:57 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <mlx.h>
-#include <stdlib.h>
+#include "libft.h"
 
-typedef struct window
+void	*ft_memmove(void *to, void *from, size_t n)
 {
-	void	*mlx_ptr;
-	void	*win;
-}			t_struct;
+	size_t			c;
+	unsigned char	*nto;
+	unsigned char	*nfrom;
 
-int	main(void)
-{
-	t_struct	window;
-
-	window.mlx_ptr = mlx_init();
-	window.win = mlx_new_window(window.mlx_ptr, 400, 800, "My firt window");
-	mlx_loop(window.mlx_ptr);
-	return (0);
+	nfrom = (unsigned char *)from;
+	nto = (unsigned char *)to;
+	c = n;
+	if (nfrom < nto)
+	{
+		while (c > 0)
+		{
+			c--;
+			nto[c] = nfrom[c];
+		}
+		return (to);
+	}
+	ft_memcpy(nto, nfrom, c);
+	return (to);
 }
