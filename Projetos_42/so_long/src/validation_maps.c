@@ -12,7 +12,24 @@
 
 #include "so_long.h"
 
-void	ft_create_string_map(int fd, t_sl *sl)
+void	ft_chek_map(t_sl *sl)
+{
+	ft_create_string_map(sl);
+	if (sl->map.line < 3)
+		ft_error_map(6);
+	if (sl->map.columns < 3)
+		ft_error_map(7);
+	if ((sl->map.columns * sl->map.line) != ft_strlen(sl->map.string))
+		ft_error_map(8);
+	ft_count_char_map(sl);
+	ft_valid_char_map(sl);
+	ft_valid_wall_map(sl);
+	//ft_map(sl);
+	ft_printf("	▥ Valid map ✓\n\n");
+	close(sl->fd);
+}
+
+void	ft_create_string_map(t_sl *sl)
 {
 	char	*line;
 	char	*temp;
@@ -24,7 +41,7 @@ void	ft_create_string_map(int fd, t_sl *sl)
 		ft_error_map(5);
 	while (1)
 	{
-		line = get_next_line(fd);
+		line = get_next_line(sl->fd);
 		if (!line)
 			break ;
 		sl->map.line ++;
@@ -37,23 +54,10 @@ void	ft_create_string_map(int fd, t_sl *sl)
 		if (sl->map.string == NULL)
 			ft_error_map(5);
 	}
-	ft_chek_map(sl);
+	free(line);
 }
 
-void	ft_chek_map(t_sl *sl)
-{
-	if (sl->map.line < 3)
-		ft_error_map(6);
-	if (sl->map.columns < 3)
-		ft_error_map(7);
-	if ((sl->map.columns * sl->map.line) != ft_strlen(sl->map.string))
-		ft_error_map(8);
-	ft_char1_map(sl);
-	ft_wall_map(sl);
-	ft_printf("	▥ Valid map ✓\n\n");
-}
-
-void	ft_char1_map(t_sl *sl)
+void	ft_count_char_map(t_sl *sl)
 {
 	int	count;
 
@@ -74,10 +78,9 @@ void	ft_char1_map(t_sl *sl)
 			sl->map.char_p ++;
 		count++;
 	}
-	ft_char2_map(sl);
 }
 
-void	ft_char2_map(t_sl *sl)
+void	ft_valid_char_map(t_sl *sl)
 {
 	if (sl->map.char_1 < 1)
 		ft_error_map(9);
@@ -91,7 +94,7 @@ void	ft_char2_map(t_sl *sl)
 		ft_error_map(9);
 }
 
-void	ft_wall_map(t_sl *sl)
+void	ft_valid_wall_map(t_sl *sl)
 {
 	size_t	count_line;
 	size_t	count;
@@ -116,4 +119,29 @@ void	ft_wall_map(t_sl *sl)
 		}
 		count_line ++;
 	}
+}
+
+void	ft_map(t_sl *sl)
+{
+	size_t	x;
+	size_t	y;
+	int	c;
+
+	y = 1;
+	c = 0;
+	printf("\ncheguei\n");
+	while(y <= sl->map.line)
+	{
+		x = 1;
+		while(x <= sl->map.columns)
+		{
+			printf("\ncheguei\n");
+			sl->map.map[x][y] = sl->map.string[c];
+			printf("%c",sl->map.map[x][y]);
+			x++;
+		}
+		y++;
+		printf("\n");
+	}
+
 }

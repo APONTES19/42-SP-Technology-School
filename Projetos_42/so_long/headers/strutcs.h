@@ -6,13 +6,14 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 10:02:36 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/03/17 10:17:01 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/03/23 14:43:18 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 typedef struct s_map
 {
 	char	*string;
+	char	**map;
 	size_t	line;
 	size_t	columns;
 	int		char_1;
@@ -32,11 +33,11 @@ typedef	struct s_win
 
 typedef struct s_img
 {
-	void	*mlx_img;
-	char	*addr;
-	int		bpp;
-	int		line_len;
-	int		endian;
+	void	*mlx_img_1;
+	void	*mlx_img_0;
+	void	*mlx_img_C;
+	void	*mlx_img_E;
+	void	*mlx_img_P;
 	int		x;
 	int		y;
 }	t_img;
@@ -52,6 +53,7 @@ typedef struct s_sprites
 
 typedef struct s_so_long
 {
+	int		fd;
 	t_map		map;
 	t_win		win;
 	t_img		img;

@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 14:33:44 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/03/16 14:59:06 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/03/23 15:52:09 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ void	ft_error_win(int n_error)
 {
 	if (n_error == 12)
 		ft_printf("\n	(error x12)\n	Falha ao iniciar janela! \n");
+	if (n_error == 13)
+		ft_printf("\n	(error x13)\n	Falha na imagem! \n");
 	ft_printf("	↻ Check the map and try again!"
 		" - by Lucasmar 42sp\n\n");
 }
