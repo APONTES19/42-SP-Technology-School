@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libs/mlx/mlx.h"
+#include <mlx.h>
 #include <stdlib.h>
 
 /*Compile with

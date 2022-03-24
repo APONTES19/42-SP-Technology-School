@@ -19,13 +19,12 @@ void	ft_chek_map(t_sl *sl)
 		ft_error_map(6);
 	if (sl->map.columns < 3)
 		ft_error_map(7);
-	if ((sl->map.columns * sl->map.line) != ft_strlen(sl->map.string))
+	if ((sl->map.columns * sl->map.line) != sl->map.len)
 		ft_error_map(8);
 	ft_count_char_map(sl);
 	ft_valid_char_map(sl);
-	ft_valid_wall_map(sl);
-	//ft_map(sl);
-	ft_printf("	▥ Valid map ✓\n\n");
+	//ft_valid_wall_map(sl);
+	ft_printf("	▥ Valid map ✓\n");
 	close(sl->fd);
 }
 
@@ -36,52 +35,70 @@ void	ft_create_string_map(t_sl *sl)
 
 	sl->map.line = 0;
 	sl->map.columns = 0;
-	sl->map.string = ft_strdup("");
-	if (sl->map.string == NULL)
+	temp = ft_strdup("");
+	if (temp == NULL)
 		ft_error_map(5);
 	while (1)
 	{
 		line = get_next_line(sl->fd);
-		if (!line)
+		if (line == NULL)
 			break ;
 		sl->map.line ++;
 		if (sl->map.line == 1)
 			sl->map.columns = ft_strlen(line) - 1;
-		temp = sl->map.string;
-		sl->map.string = *ft_split(ft_strjoin(temp, line), '\n');
-		free (temp);
-		temp = NULL;
-		if (sl->map.string == NULL)
+		temp = ft_strjoin(temp, line);
+		free (line);
+		if (temp == NULL)
 			ft_error_map(5);
 	}
-	free(line);
+	sl->map.len = ft_strlen(temp) - sl->map.line;
+	//ft_printf("\nstring temp:\n%s",temp);
+	sl->map.str = ft_split(temp,'\n');
+	//ft_printf("linhas %d\n", sl->map.line);
+	//ft_printf("colunas %d\n", sl->map.columns);
+	//ft_printf("posição: %c\n",sl->map.str[0][4]);
+	free(temp);
 }
 
 void	ft_count_char_map(t_sl *sl)
 {
-	int	count;
+	size_t	x;
+	size_t	y;
+	sl->map.char_1 = 0;
+	sl->map.char_0 = 0;
+	sl->map.char_c = 0;
+	sl->map.char_e = 0;
+	sl->map.char_p = 0;
 
-	count = 0;
-	while (sl->map.string[count])
+	y = 0;
+	while (y < sl->map.line)
 	{
-		if (!(ft_strchr(D_VALID_CHAR, sl->map.string[count])))
+		x = 0;
+		while(x < sl->map.columns)
+		{
+			//ft_printf("%c", sl->map.str[y][x]);
+			if (!(ft_strchr(D_VALID_CHAR, sl->map.str[y][x])))
 					ft_error_map(10);
-		if (sl->map.string[count] == '1')
-			sl->map.char_1 ++;
-		if (sl->map.string[count] == '0')
-			sl->map.char_0 ++;
-		if (sl->map.string[count] == 'C')
-			sl->map.char_c ++;
-		if (sl->map.string[count] == 'E')
-			sl->map.char_e ++;
-		if (sl->map.string[count] == 'P')
-			sl->map.char_p ++;
-		count++;
+			if (sl->map.str[y][x] == '1')
+				sl->map.char_1++;
+			if (sl->map.str[y][x] == '0')
+				sl->map.char_0++;
+			if (sl->map.str[y][x] == 'C')
+				sl->map.char_c++;
+			if (sl->map.str[y][x] == 'E')
+				sl->map.char_e++;
+			if (sl->map.str[y][x] == 'P')
+				sl->map.char_p++;
+			x++;
+		}
+		//ft_printf("\n");
+		y++;
 	}
 }
 
 void	ft_valid_char_map(t_sl *sl)
 {
+	//ft_printf("1-%d | 0-%d | C %d | E %d | P %d",sl->map.char_1,sl->map.char_0,sl->map.char_c,sl->map.char_e,sl->map.char_p);
 	if (sl->map.char_1 < 1)
 		ft_error_map(9);
 	if (sl->map.char_0 < 1)
@@ -94,6 +111,7 @@ void	ft_valid_char_map(t_sl *sl)
 		ft_error_map(9);
 }
 
+
 void	ft_valid_wall_map(t_sl *sl)
 {
 	size_t	count_line;
@@ -105,15 +123,15 @@ void	ft_valid_wall_map(t_sl *sl)
 	{
 		while ((count) < (sl->map.columns * count_line))
 		{
-			if ((count_line == 1) & (sl->map.string[count] != '1'))
+			if ((count_line == 1) & (*sl->map.str[count] != '1'))
 				ft_error_map(11);
-			if ((count_line == sl->map.line) & (sl->map.string[count] != '1'))
+			if ((count_line == sl->map.line) & (*sl->map.str[count] != '1'))
 				ft_error_map(11);
 			if ((count == (sl->map.columns * count_line - sl->map.columns))
-				& (sl->map.string[count] != '1'))
+				& (*sl->map.str[count] != '1'))
 				ft_error_map(11);
 			if ((count == (sl->map.columns * count_line -1))
-				& (sl->map.string[count] != '1'))
+				& (*sl->map.str[count] != '1'))
 				ft_error_map(11);
 			count ++;
 		}
@@ -121,27 +139,50 @@ void	ft_valid_wall_map(t_sl *sl)
 	}
 }
 
-void	ft_map(t_sl *sl)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+void	ft_valid_wall_map(t_sl *sl)
 {
-	size_t	x;
-	size_t	y;
-	int	c;
+	size_t	count_line;
+	size_t	count;
 
-	y = 1;
-	c = 0;
-	printf("\ncheguei\n");
-	while(y <= sl->map.line)
+	count_line = 1;
+	count = 0;
+	while (count_line <= sl->map.line)
 	{
-		x = 1;
-		while(x <= sl->map.columns)
+		while ((count) < (sl->map.columns * count_line))
 		{
-			printf("\ncheguei\n");
-			sl->map.map[x][y] = sl->map.string[c];
-			printf("%c",sl->map.map[x][y]);
-			x++;
+			if ((count_line == 1) & (*sl->map.str[count] != '1'))
+				ft_error_map(11);
+			if ((count_line == sl->map.line) & (*sl->map.str[count] != '1'))
+				ft_error_map(11);
+			if ((count == (sl->map.columns * count_line - sl->map.columns))
+				& (*sl->map.str[count] != '1'))
+				ft_error_map(11);
+			if ((count == (sl->map.columns * count_line -1))
+				& (*sl->map.str[count] != '1'))
+				ft_error_map(11);
+			count ++;
 		}
-		y++;
-		printf("\n");
+		count_line ++;
 	}
-
 }

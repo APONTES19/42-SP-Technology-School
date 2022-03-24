@@ -13,3 +13,12 @@
 #define D_EXT_MAP ".ber"
 #define D_VALID_CHAR "10CEP"
 #define	D_IMG_SIZE 100
+
+#define	D_A 97
+#define	D_D 100
+#define	D_W 119
+#define	D_S 115
+#define	D_L 65361
+#define	D_R 65363
+#define	D_U 65362
+#define	D_DOWN 65364

@@ -12,10 +12,10 @@
 
 typedef struct s_map
 {
-	char	*string;
-	char	**map;
+	char	**str;
 	size_t	line;
 	size_t	columns;
+	size_t		len;
 	int		char_1;
 	int		char_0;
 	int		char_c;

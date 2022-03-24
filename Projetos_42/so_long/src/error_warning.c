@@ -57,7 +57,16 @@ void	ft_error_win(int n_error)
 	if (n_error == 12)
 		ft_printf("\n	(error x12)\n	Falha ao iniciar janela! \n");
 	if (n_error == 13)
-		ft_printf("\n	(error x13)\n	Falha na imagem! \n");
-	ft_printf("	↻ Check the map and try again!"
+		ft_printf("\n	(error x13)\n	Failed to load image! 'WALL 1'! \n");
+	if (n_error == 14)
+		ft_printf("\n	(error x14)\n	Failed to load image! 'EMPTY 0' \n");
+	if (n_error == 15)
+		ft_printf("\n	(error x15)\n	Failed to load image! 'COLLECTIBLE C' \n");
+	if (n_error == 16)
+		ft_printf("\n	(error x16)\n	Failed to load image! 'EXIT E' \n");
+	if (n_error == 17)
+		ft_printf("\n	(error x17)\n	Failed to load image! 'START P' \n");
+	ft_printf("	↻ Check the error and try again!"
 		" - by Lucasmar 42sp\n\n");
+	exit(EXIT_FAILURE);
 }

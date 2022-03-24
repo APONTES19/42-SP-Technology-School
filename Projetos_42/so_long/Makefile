@@ -18,7 +18,7 @@ GNL_PATH =		./libs/gnl/get_next_line.c
 
 PRINTF =		$(PRINTF_PATH)libftprintf.a
 LIBFT =			$(LIBFT_PATH)libft.a
-HEADERS_PATH=./headers/
+HEADERS_PATH=	./headers/
 
 # inputs ********************************************************************* #
 NAME=so_long
@@ -29,7 +29,8 @@ OBJ_PATH=./obj
 SRC_FILES=validation_input.c\
 		  validation_maps.c\
 		  error_warning.c\
-		  window.c
+		  window.c\
+		  game.c
 
 SRC=$(addprefix $(SRC_PATH)/, $(SRC_FILES))
 OBJ=$(SRC:$(SRC_PATH)/%.c=$(OBJ_PATH)/%.o)
