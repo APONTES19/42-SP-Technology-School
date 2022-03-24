@@ -86,7 +86,7 @@ void	ft_set_img(t_sl *sl)
 	sl->img.mlx_img_P = NULL;
 
 	sl->img.mlx_img_1 = mlx_xpm_file_to_image(sl->win.ptr,
-		".img/1.xpm",&sl->img.x, &sl->img.y);
+		"./so_long/img/1.xpm",&sl->img.x, &sl->img.y);
 	if(sl->img.mlx_img_1 == NULL)
 		ft_error_win(13);
 

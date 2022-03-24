@@ -38,7 +38,7 @@ OBJ=$(SRC:$(SRC_PATH)/%.c=$(OBJ_PATH)/%.o)
 CC=clang
 FLAG=-Wall -Werror -Wextra #-fsanitize=leak
 GNL_FLAGS=-D BUFFER_SIZE=10
-MLXFLAGS=-I ./libs/mlx -L ./libs/mlx -lmlx -Ilmlx -lXext -lX11 ./libs/mlx/libmlx.a
+MLXFLAGS=-lmlx -Ilmlx -lXext -lX11
 
 # clean ********************************************************************** #
 RM=-rm -f

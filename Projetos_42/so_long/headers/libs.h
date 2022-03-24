@@ -21,7 +21,7 @@
 #include "../libs/gnl/get_next_line.h"
 
 #include <fcntl.h>
-#include <../libs/mlx/mlx.h>
+#include <mlx.h>
 #include <X11/keysym.h>
 #include <X11/X.h>
 
