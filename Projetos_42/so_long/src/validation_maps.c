@@ -23,7 +23,7 @@ void	ft_chek_map(t_sl *sl)
 		ft_error_map(8);
 	ft_count_char_map(sl);
 	ft_valid_char_map(sl);
-	//ft_valid_wall_map(sl);
+	ft_valid_wall_map(sl);
 	ft_printf("	▥ Valid map ✓\n");
 	close(sl->fd);
 }
@@ -88,7 +88,11 @@ void	ft_count_char_map(t_sl *sl)
 			if (sl->map.str[y][x] == 'E')
 				sl->map.char_e++;
 			if (sl->map.str[y][x] == 'P')
+			{
 				sl->map.char_p++;
+				sl->map.xp = x;
+				sl->map.yp = y;
+			}
 			x++;
 		}
 		//ft_printf("\n");
@@ -114,75 +118,27 @@ void	ft_valid_char_map(t_sl *sl)
 
 void	ft_valid_wall_map(t_sl *sl)
 {
-	size_t	count_line;
-	size_t	count;
+	size_t	x;
+	size_t	y;
+	size_t	end_line;
+	size_t	end_columns;
 
-	count_line = 1;
-	count = 0;
-	while (count_line <= sl->map.line)
+	end_line = sl->map.line -1;
+	end_columns = sl->map.columns -1;
+	y = 0;
+	while (y < sl->map.line)
 	{
-		while ((count) < (sl->map.columns * count_line))
+		x = 0;
+		while(x < sl->map.columns)
 		{
-			if ((count_line == 1) & (*sl->map.str[count] != '1'))
+			if ((y == 0 || y == end_line)
+				& (sl->map.str[y][x] != '1'))
 				ft_error_map(11);
-			if ((count_line == sl->map.line) & (*sl->map.str[count] != '1'))
+			else if ((x == 0 || x == end_columns)
+				& (sl->map.str[y][x] != '1'))
 				ft_error_map(11);
-			if ((count == (sl->map.columns * count_line - sl->map.columns))
-				& (*sl->map.str[count] != '1'))
-				ft_error_map(11);
-			if ((count == (sl->map.columns * count_line -1))
-				& (*sl->map.str[count] != '1'))
-				ft_error_map(11);
-			count ++;
+			x++;
 		}
-		count_line ++;
-	}
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-void	ft_valid_wall_map(t_sl *sl)
-{
-	size_t	count_line;
-	size_t	count;
-
-	count_line = 1;
-	count = 0;
-	while (count_line <= sl->map.line)
-	{
-		while ((count) < (sl->map.columns * count_line))
-		{
-			if ((count_line == 1) & (*sl->map.str[count] != '1'))
-				ft_error_map(11);
-			if ((count_line == sl->map.line) & (*sl->map.str[count] != '1'))
-				ft_error_map(11);
-			if ((count == (sl->map.columns * count_line - sl->map.columns))
-				& (*sl->map.str[count] != '1'))
-				ft_error_map(11);
-			if ((count == (sl->map.columns * count_line -1))
-				& (*sl->map.str[count] != '1'))
-				ft_error_map(11);
-			count ++;
-		}
-		count_line ++;
+		y++;
 	}
 }

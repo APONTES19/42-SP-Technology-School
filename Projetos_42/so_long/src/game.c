@@ -21,9 +21,10 @@ int	ft_key(int key, t_sl *sl)
 	if (key == D_A || key == D_L)
 	{
 		ft_printf("VAMOS PRA ESQUERDA P ! \n", key);
-		mlx_put_image_to_window(sl->win.ptr, sl->win.scr,
-					sl->img.mlx_img_P, 200, 500);
-
+		sl->map.str[sl->map.yp][sl->map.xp] = 0;
+		sl->map.xp -= 1;
+		sl->map.str[sl->map.yp][sl->map.xp] = 'P';
+		ft_render(sl);
 	}
 	return (0);
 }

@@ -30,8 +30,11 @@ void	ft_init_win(t_sl *sl)
 	ft_set_img(sl);
 	ft_render(sl);
 
+	mlx_expose_hook(sl->win.scr, ft_render, &sl);
+
 	mlx_hook(sl->win.scr, 33, 1L << 17, ft_close_window, &sl);
 	mlx_key_hook(sl->win.scr, ft_key, &sl);
+
 
 	mlx_loop(sl->win.ptr);
 }
@@ -42,40 +45,38 @@ int	ft_close_window(t_sl *sl)
 	return (0);
 }
 
-void	ft_render(t_sl *sl)
+int	ft_render(t_sl *sl)
 {
-	size_t	i_x;
-	size_t	i_y;
-	size_t	c;
+	size_t	x;
+	size_t	y;
 
-	i_y = 0;
-	c = 0;
-	while(i_y < sl->map.line)
+	y = 0;
+	while(y < sl->map.line)
 	{
-		i_x = 0;
-		while(i_x < sl->map.columns)
+		x = 0;
+		while(x < sl->map.columns)
 		{
-			if (*sl->map.str[c] == '1')
+			if (sl->map.str[y][x]== '1')
 				mlx_put_image_to_window(sl->win.ptr, sl->win.scr,
-					sl->img.mlx_img_1, (i_x * D_IMG_SIZE), (i_y * D_IMG_SIZE));
-			if (*sl->map.str[c] == '0')
+					sl->img.mlx_img_1, (x * D_IMG_SIZE), (y * D_IMG_SIZE));
+			if (sl->map.str[y][x] == '0')
 				mlx_put_image_to_window(sl->win.ptr, sl->win.scr,
-					sl->img.mlx_img_0, (i_x * D_IMG_SIZE), (i_y * D_IMG_SIZE));
-			if (*sl->map.str[c] == 'C')
+					sl->img.mlx_img_0, (x * D_IMG_SIZE), (y * D_IMG_SIZE));
+			if (sl->map.str[y][x] == 'C')
 				mlx_put_image_to_window(sl->win.ptr, sl->win.scr,
-					sl->img.mlx_img_C, (i_x * D_IMG_SIZE), (i_y * D_IMG_SIZE));
-			if (*sl->map.str[c] == 'E')
+					sl->img.mlx_img_C, (x * D_IMG_SIZE), (y * D_IMG_SIZE));
+			if (sl->map.str[y][x] == 'E')
 				mlx_put_image_to_window(sl->win.ptr, sl->win.scr,
-					sl->img.mlx_img_E, (i_x * D_IMG_SIZE), (i_y * D_IMG_SIZE));
-			if (*sl->map.str[c] == 'P')
+					sl->img.mlx_img_E, (x * D_IMG_SIZE), (y * D_IMG_SIZE));
+			if (sl->map.str[y][x] == 'P')
 				mlx_put_image_to_window(sl->win.ptr, sl->win.scr,
-					sl->img.mlx_img_P, (i_x * D_IMG_SIZE), (i_y * D_IMG_SIZE));
-			c++;
-			i_x++;
+					sl->img.mlx_img_P, (x * D_IMG_SIZE), (y * D_IMG_SIZE));
+			x++;
 		}
-		i_y++;
+		y++;
 	}
 	ft_printf("	▥ render game ✓\n");
+	return(0);
 }
 
 void	ft_set_img(t_sl *sl)

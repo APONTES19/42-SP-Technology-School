@@ -18,7 +18,7 @@ int	main(int argc, char **argv)
 
 	ft_check_input(argc, argv[1], &sl);
 	ft_chek_map(&sl);
-	//ft_init_win(&sl);
+	ft_init_win(&sl);
 	return (0);
 }
 

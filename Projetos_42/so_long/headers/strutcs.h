@@ -21,6 +21,8 @@ typedef struct s_map
 	int		char_c;
 	int		char_e;
 	int		char_p;
+	int		xp;
+	int		yp;
 }			t_map;
 
 typedef	struct s_win
