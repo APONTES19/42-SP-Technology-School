@@ -24,14 +24,12 @@ int	main(int argc, char **argv)
 
 void	ft_check_input(int argc, char *str, t_sl *sl)
 {
-	if (argc < 2)
+	if (argc != 2)
 		ft_error_input(1);
-	if (argc > 2)
-		ft_error_input(2);
 	if (ft_strncmp(&str[ft_strlen(str) - 4], D_EXT_MAP, 4))
 		ft_error_input(3);
 	sl->fd = open(str, O_RDONLY);
 	if (sl->fd == -1)
 		ft_error_input(4);
-	ft_printf("\n	▥ valid arguments ✓\n");
+	ft_printf("\n	valid arguments ✓\n");
 }

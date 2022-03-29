@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 09:59:09 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/03/16 14:16:46 by lucasmar         ###   ########->fr       */
+/*   Updated: 2022/03/16 14:16:46 by lucasmar         ###   ########->fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,16 @@ void	ft_chek_map(t_sl *sl)
 		ft_error_map(7);
 	if ((sl->map.columns * sl->map.line) != sl->map.len)
 		ft_error_map(8);
+	sl->map.char_1 = 0;
+	sl->map.char_0 = 0;
+	sl->map.char_c = 0;
+	sl->map.char_e = 0;
+	sl->map.char_p = 0;
 	ft_count_char_map(sl);
 	ft_valid_char_map(sl);
 	ft_valid_wall_map(sl);
-	ft_printf("	▥ Valid map ✓\n");
+	ft_check_p(sl);
+	ft_printf("	Valid map ✓\n");
 	close(sl->fd);
 }
 
@@ -51,34 +57,24 @@ void	ft_create_string_map(t_sl *sl)
 		if (temp == NULL)
 			ft_error_map(5);
 	}
-	sl->map.len = ft_strlen(temp) - sl->map.line;
-	//ft_printf("\nstring temp:\n%s",temp);
-	sl->map.str = ft_split(temp,'\n');
-	//ft_printf("linhas %d\n", sl->map.line);
-	//ft_printf("colunas %d\n", sl->map.columns);
-	//ft_printf("posição: %c\n",sl->map.str[0][4]);
-	free(temp);
+	sl->map.len = (sl->map.line * sl->map.columns);
+	sl->map.str = ft_split(temp, '\n');
+	free (temp);
 }
 
 void	ft_count_char_map(t_sl *sl)
 {
 	size_t	x;
 	size_t	y;
-	sl->map.char_1 = 0;
-	sl->map.char_0 = 0;
-	sl->map.char_c = 0;
-	sl->map.char_e = 0;
-	sl->map.char_p = 0;
 
 	y = 0;
 	while (y < sl->map.line)
 	{
 		x = 0;
-		while(x < sl->map.columns)
+		while (x < sl->map.columns)
 		{
-			//ft_printf("%c", sl->map.str[y][x]);
 			if (!(ft_strchr(D_VALID_CHAR, sl->map.str[y][x])))
-					ft_error_map(10);
+				ft_error_map (10);
 			if (sl->map.str[y][x] == '1')
 				sl->map.char_1++;
 			if (sl->map.str[y][x] == '0')
@@ -88,21 +84,15 @@ void	ft_count_char_map(t_sl *sl)
 			if (sl->map.str[y][x] == 'E')
 				sl->map.char_e++;
 			if (sl->map.str[y][x] == 'P')
-			{
 				sl->map.char_p++;
-				sl->map.xp = x;
-				sl->map.yp = y;
-			}
 			x++;
 		}
-		//ft_printf("\n");
 		y++;
 	}
 }
 
 void	ft_valid_char_map(t_sl *sl)
 {
-	//ft_printf("1-%d | 0-%d | C %d | E %d | P %d",sl->map.char_1,sl->map.char_0,sl->map.char_c,sl->map.char_e,sl->map.char_p);
 	if (sl->map.char_1 < 1)
 		ft_error_map(9);
 	if (sl->map.char_0 < 1)
@@ -114,7 +104,6 @@ void	ft_valid_char_map(t_sl *sl)
 	if (sl->map.char_p < 1)
 		ft_error_map(9);
 }
-
 
 void	ft_valid_wall_map(t_sl *sl)
 {
@@ -129,7 +118,7 @@ void	ft_valid_wall_map(t_sl *sl)
 	while (y < sl->map.line)
 	{
 		x = 0;
-		while(x < sl->map.columns)
+		while (x < sl->map.columns)
 		{
 			if ((y == 0 || y == end_line)
 				& (sl->map.str[y][x] != '1'))
@@ -137,6 +126,28 @@ void	ft_valid_wall_map(t_sl *sl)
 			else if ((x == 0 || x == end_columns)
 				& (sl->map.str[y][x] != '1'))
 				ft_error_map(11);
+			x++;
+		}
+		y++;
+	}
+}
+
+void	ft_check_p(t_sl *sl)
+{
+	size_t	x;
+	size_t	y;
+
+	y = 0;
+	while (y < sl->map.line)
+	{
+		x = 0;
+		while (x < sl->map.columns)
+		{
+			if (sl->map.str[y][x] == 'P')
+			{
+				sl->map.xp = x;
+				sl->map.yp = y;
+			}
 			x++;
 		}
 		y++;

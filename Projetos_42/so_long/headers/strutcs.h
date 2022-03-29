@@ -60,4 +60,5 @@ typedef struct s_so_long
 	t_win		win;
 	t_img		img;
 	t_sprites	sprites;
+	int			steps;
 }	t_sl;

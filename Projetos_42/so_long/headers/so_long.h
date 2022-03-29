@@ -29,11 +29,19 @@ void	ft_valid_wall_map(t_sl *sl);
 
 void	ft_init_win(t_sl *sl);
 int		ft_close_window(t_sl *sl);
-int		ft_key(int key, t_sl *sl);
 int		ft_render(t_sl *sl);
 void	ft_set_img(t_sl *sl);
 void	ft_map(t_sl *sl);
 
+int		ft_key(int key, t_sl *sl);
+void	ft_move_left(t_sl *sl);
+void	ft_move_rigth(t_sl *sl);
+void	ft_move_up(t_sl *sl);
+void	ft_move_down(t_sl *sl);
+int		ft_next_move(t_sl *sl, int x, int y);
+
+void	ft_check_p(t_sl *sl);
+void	ft_print_map(t_sl *sl);
 
 void	ft_error_input(int n_error);
 void	ft_error_map(int n_error);
