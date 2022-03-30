@@ -70,3 +70,27 @@ void	ft_error_win(int n_error)
 		" - by Lucasmar 42sp\n\n");
 	exit(EXIT_FAILURE);
 }
+
+
+int	ft_close_window(t_sl *sl)
+{
+	sl->ax = 0;
+	mlx_clear_window(sl->win.ptr, sl->win.scr);
+	mlx_loop_end(sl->win.ptr);
+	mlx_destroy_image(sl->win.ptr, sl->img.mlx_img_1);
+	mlx_destroy_image(sl->win.ptr, sl->img.mlx_img_0);
+	mlx_destroy_image(sl->win.ptr, sl->img.mlx_img_C);
+	mlx_destroy_image(sl->win.ptr, sl->img.mlx_img_E);
+	mlx_destroy_image(sl->win.ptr, sl->img.mlx_img_P);
+	mlx_destroy_window(sl->win.ptr, sl->win.scr);
+	mlx_destroy_display(sl->win.ptr);
+	while (sl->map.str[sl->ax])
+	{
+		free(sl->map.str[sl->ax]);
+		sl->ax++;
+	}
+	free(sl->map.str);
+	free(sl->win.ptr);
+	exit(3);
+	return(0);
+}

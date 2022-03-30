@@ -44,21 +44,13 @@ typedef struct s_img
 	int		y;
 }	t_img;
 
-typedef struct s_sprites
-{
-	t_img	back;
-	t_img	wall;
-	t_img	exit;
-
-}	t_sprites;
-
-
 typedef struct s_so_long
 {
 	int		fd;
-	t_map		map;
-	t_win		win;
-	t_img		img;
-	t_sprites	sprites;
-	int			steps;
+	int		steps;
+	size_t	ax;
+	size_t	ay;
+	t_map	map;
+	t_win	win;
+	t_img	img;
 }	t_sl;

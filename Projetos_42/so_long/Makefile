@@ -26,11 +26,11 @@ NAME=so_long
 SRC_PATH=./src
 OBJ_PATH=./obj
 
-SRC_FILES=validation_input.c\
-		  validation_maps.c\
+SRC_FILES=1_so_long.c\
+		  2_validation_maps.c\
 		  error_warning.c\
-		  window.c\
-		  game.c
+		  3_window.c\
+		  4_game.c
 
 SRC=$(addprefix $(SRC_PATH)/, $(SRC_FILES))
 OBJ=$(SRC:$(SRC_PATH)/%.c=$(OBJ_PATH)/%.o)

@@ -13,36 +13,29 @@
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-#include "defines.h"
-#include "libs.h"
-#include "strutcs.h"
+#include "./defines.h"
+#include "./libs.h"
+#include "./strutcs.h"
 
 int		main(int argc, char **argv);
-
 void	ft_check_input(int argc, char *str, t_sl *sl);
-
 void	ft_create_string_map(t_sl *sl);
 void	ft_chek_map(t_sl *sl);
 void	ft_count_char_map(t_sl *sl);
 void	ft_valid_char_map(t_sl *sl);
 void	ft_valid_wall_map(t_sl *sl);
-
 void	ft_init_win(t_sl *sl);
 int		ft_close_window(t_sl *sl);
 int		ft_render(t_sl *sl);
 void	ft_set_img(t_sl *sl);
-void	ft_map(t_sl *sl);
-
+void	ft_print_steps(t_sl *sl);
 int		ft_key(int key, t_sl *sl);
 void	ft_move_left(t_sl *sl);
 void	ft_move_rigth(t_sl *sl);
 void	ft_move_up(t_sl *sl);
 void	ft_move_down(t_sl *sl);
-int		ft_next_move(t_sl *sl, int x, int y);
-
+int		ft_next_move(t_sl *sl);
 void	ft_check_p(t_sl *sl);
-void	ft_print_map(t_sl *sl);
-
 void	ft_error_input(int n_error);
 void	ft_error_map(int n_error);
 void	ft_error_win(int n_error);
