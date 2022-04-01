@@ -41,7 +41,7 @@ void	ft_move_down(t_sl *sl);
 int		ft_next_move(t_sl *sl);
 void	ft_move(t_sl *sl);
 void	ft_check_p(t_sl *sl);
-void	ft_error_input(t_sl *sl, int n_error);
+void	ft_error_input(int n_error);
 void	ft_error_map(t_sl *sl, int n_error);
 void	ft_error_win(t_sl *sl, int n_error);
 

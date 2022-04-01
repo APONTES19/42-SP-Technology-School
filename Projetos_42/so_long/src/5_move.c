@@ -57,7 +57,7 @@ void	ft_move_if_1(t_sl *sl)
 			" next collision we lost the ship! \n");
 	else
 	{
-		sl->aux = 10000;
+		sl->aux = 100000;
 		while (sl->aux != 0)
 		{
 			mlx_put_image_to_window(sl->win.ptr, sl->win.scr, sl->img.mlx_img_0,
@@ -66,7 +66,7 @@ void	ft_move_if_1(t_sl *sl)
 				(sl->map.xp * DIS), (sl->map.yp * DIS));
 		sl->aux--;
 		}
-		ft_printf("GAME OVER !!!\n");
+		ft_printf("	GAME OVER !!!\n");
 		ft_close_window(sl, 20);
 	}
 	sl->aux = 0;
