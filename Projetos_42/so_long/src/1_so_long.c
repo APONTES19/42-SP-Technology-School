@@ -34,3 +34,9 @@ void	ft_check_input(int argc, char *str, t_sl *sl)
 		ft_error_input(sl, 3);
 	ft_printf("\n	valid arguments ✓\n");
 }
+
+int	ft_close_x(t_sl *sl)
+{
+	ft_close_window(sl, 20);
+	return (0);
+}

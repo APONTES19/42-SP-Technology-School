@@ -15,6 +15,7 @@
 void	ft_chek_map(t_sl *sl)
 {
 	ft_create_string_map(sl);
+	free(sl->map.temp);
 	if (sl->map.line < 3)
 		ft_error_map(sl, 6);
 	if (sl->map.columns < 3)
@@ -39,7 +40,7 @@ void	ft_create_string_map(t_sl *sl)
 	while (1)
 	{
 		sl->map.map = get_next_line(sl->fd);
-		if (sl->map.map == NULL || *sl->map.map == '\n')
+		if (sl->map.map == NULL || !*sl->map.map)
 			break ;
 		sl->map.line ++;
 		if (sl->map.line == 1)

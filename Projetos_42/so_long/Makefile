@@ -6,7 +6,7 @@
 #    By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/23 13:45:23 by lucasmar          #+#    #+#              #
-#    Updated: 2022/03/16 15:33:29 by lucasmar         ###   ########.fr        #
+#    Updated: 2022/04/01 20:50:01 by marvin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ OBJ=$(SRC:$(SRC_PATH)/%.c=$(OBJ_PATH)/%.o)
 
 # compilation **************************************************************** #
 CC=clang
-FLAG=-Wall -Werror -Wextra -fsanitize=leak
+FLAG=-Wall -Werror -Wextra #-fsanitize=leak
 GNL_FLAGS=-D BUFFER_SIZE=10
 MLXFLAGS=-lmlx -Ilmlx -lXext -lX11
 

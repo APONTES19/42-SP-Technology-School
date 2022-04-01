@@ -25,7 +25,7 @@ void	ft_init_win(t_sl *sl)
 	ft_set_img(sl);
 	ft_render(sl);
 	mlx_key_hook(sl->win.scr, &ft_key, sl);
-	mlx_hook(sl->win.scr, 33, 1L << 17, &ft_close_window, sl);
+	mlx_hook(sl->win.scr, 33, 1L << 17, &ft_close_x, sl);
 	mlx_expose_hook(sl->win.scr, &ft_render, sl);
 	mlx_loop(sl->win.ptr);
 }
@@ -52,6 +52,10 @@ void	ft_set_img(t_sl *sl)
 			"./img/P.xpm", &sl->img.x, &sl->img.y);
 	if (sl->img.mlx_img_p == NULL)
 		ft_error_win(sl, 17);
+	sl->img.mlx_img_b = mlx_xpm_file_to_image(sl->win.ptr,
+			"./img/b.xpm", &sl->img.x, &sl->img.y);
+	if (sl->img.mlx_img_b == NULL)
+		ft_error_win(sl, 18);
 	ft_printf("	Set image ✓\n");
 }
 

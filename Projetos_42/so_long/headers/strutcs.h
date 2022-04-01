@@ -46,6 +46,7 @@ typedef struct s_img
 	void	*mlx_img_c;
 	void	*mlx_img_e;
 	void	*mlx_img_p;
+	void	*mlx_img_b;
 	int		x;
 	int		y;
 }	t_img;

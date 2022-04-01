@@ -25,7 +25,7 @@ void	ft_error_input(t_sl *sl, int n_error)
 			"please check !\n\n");
 	ft_printf("	↻ check the argument and try again! ex: ./maps/x.ber !"
 		" - by Lucasmar 42sp\n\n");
-	ft_close_window(sl);
+	ft_close(sl);
 }
 
 void	ft_error_map(t_sl *sl, int n_error)
@@ -53,7 +53,7 @@ void	ft_error_map(t_sl *sl, int n_error)
 		ft_printf("	(error x20)\n	Mandatory character 'E' missing!\n");
 	if (n_error == 21)
 		ft_printf("	(error x21)\n	Mandatory character 'P' missing!\n");
-	ft_close_window(sl);
+	ft_close(sl);
 }
 
 void	ft_error_win(t_sl *sl, int n_error)
@@ -70,14 +70,45 @@ void	ft_error_win(t_sl *sl, int n_error)
 		ft_printf("\n	(error x16)\n	Failed to load image! 'EXIT E'\n");
 	if (n_error == 17)
 		ft_printf("\n	(error x17)\n	Failed to load image! 'START P'\n");
+	if (n_error == 18)
+		ft_printf("\n	(error x18)\n	Failed to load image! 'EXPLOD b'\n");
 	ft_printf("	↻ Check the error and try again!"
 		" - by Lucasmar 42sp\n\n");
-	ft_close_window (sl);
+	ft_close_window (sl, n_error);
 }
 
-int	ft_close_window(t_sl *sl)
+int	ft_close_window(t_sl *sl, int n)
 {
-	ft_memset(&sl, 0, sizeof sl);
-	exit(3);
+	if (n == 0)
+		n = 20;
+	if (n >= 13)
+	{
+		mlx_destroy_image(sl->win.ptr, sl->img.mlx_img_1);
+		mlx_destroy_image(sl->win.ptr, sl->img.mlx_img_0);
+		mlx_destroy_image(sl->win.ptr, sl->img.mlx_img_c);
+		mlx_destroy_image(sl->win.ptr, sl->img.mlx_img_e);
+		mlx_destroy_image(sl->win.ptr, sl->img.mlx_img_p);
+		mlx_destroy_image(sl->win.ptr, sl->img.mlx_img_b);
+	}
+	mlx_clear_window(sl->win.ptr, sl->win.scr);
+	mlx_loop_end(sl->win.ptr);
+	mlx_destroy_window(sl->win.ptr, sl->win.scr);
+	mlx_destroy_display(sl->win.ptr);
+	free(sl->win.ptr);
+	ft_close (sl);
 	return (0);
 }
+
+void	ft_close(t_sl *sl)
+{
+	sl->aux = 0;
+	while (sl->map.str[sl->aux])
+	{
+		free(sl->map.str[sl->aux]);
+		sl->aux++;
+	}
+	free(sl->map.str);
+	exit(3);
+}
+
+//ft_memset(&sl, 0, sizeof sl);

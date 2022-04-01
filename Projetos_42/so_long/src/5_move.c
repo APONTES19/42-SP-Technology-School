@@ -27,7 +27,7 @@ int	ft_next_move(t_sl *sl)
 		if (sl->map.char_c == 0)
 		{
 			ft_printf("	Mission accomplished, return to your post cadet ! ✓\n");
-			ft_close_window(sl);
+			ft_close_window(sl, 20);
 		}
 		else
 			ft_printf("	▥Not prepared collect %d remaining\n", sl->map.char_c);
@@ -57,17 +57,17 @@ void	ft_move_if_1(t_sl *sl)
 			" next collision we lost the ship! \n");
 	else
 	{
-		sl->aux = 100000;
+		sl->aux = 10000;
 		while (sl->aux != 0)
 		{
 			mlx_put_image_to_window(sl->win.ptr, sl->win.scr, sl->img.mlx_img_0,
 				(sl->map.xp * DIS), (sl->map.yp * DIS));
-			mlx_put_image_to_window(sl->win.ptr, sl->win.scr, sl->img.mlx_img_p,
+			mlx_put_image_to_window(sl->win.ptr, sl->win.scr, sl->img.mlx_img_b,
 				(sl->map.xp * DIS), (sl->map.yp * DIS));
 		sl->aux--;
 		}
 		ft_printf("GAME OVER !!!\n");
-		ft_close_window(sl);
+		ft_close_window(sl, 20);
 	}
 	sl->aux = 0;
 	sl->n++;

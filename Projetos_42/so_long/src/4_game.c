@@ -15,7 +15,7 @@
 int	ft_key(int key, t_sl *sl)
 {
 	if (key == 65307)
-		ft_close_window(sl);
+		ft_close_window(sl, 20);
 	else if (key == D_A || key == D_L)
 		ft_move_left(sl);
 	else if (key == D_D || key == D_R)
