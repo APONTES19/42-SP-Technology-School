@@ -13,15 +13,15 @@
 #ifndef LIBS_H
 # define LIBS_H
 
-#include<stdio.h>
-#include<stdlib.h>
-#include <unistd.h>
-#include "../libs/ft_printf/headers/ft_printf.h"
-#include "../libs/libft/headers/libft.h"
-#include "../libs/gnl/get_next_line.h"
-#include <fcntl.h>
-#include <mlx.h>
-#include <X11/keysym.h>
-#include <X11/X.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include "../libs/ft_printf/headers/ft_printf.h"
+# include "../libs/libft/headers/libft.h"
+# include "../libs/gnl/get_next_line.h"
+# include <fcntl.h>
+# include <mlx.h>
+# include <X11/keysym.h>
+# include <X11/X.h>
 
 #endif

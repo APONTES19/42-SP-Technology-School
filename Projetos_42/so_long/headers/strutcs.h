@@ -10,12 +10,18 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef STRUTCS_H
+# define STRUTCS_H
+
 typedef struct s_map
 {
 	char	**str;
 	size_t	line;
 	size_t	columns;
-	size_t		len;
+	size_t	len;
+	char	*map;
+	char	*aux;
+	char	*temp;
 	int		char_1;
 	int		char_0;
 	int		char_c;
@@ -25,7 +31,7 @@ typedef struct s_map
 	int		yp;
 }			t_map;
 
-typedef	struct s_win
+typedef struct s_win
 {
 	void	*ptr;
 	void	*scr;
@@ -37,9 +43,9 @@ typedef struct s_img
 {
 	void	*mlx_img_1;
 	void	*mlx_img_0;
-	void	*mlx_img_C;
-	void	*mlx_img_E;
-	void	*mlx_img_P;
+	void	*mlx_img_c;
+	void	*mlx_img_e;
+	void	*mlx_img_p;
 	int		x;
 	int		y;
 }	t_img;
@@ -50,7 +56,11 @@ typedef struct s_so_long
 	int		steps;
 	size_t	ax;
 	size_t	ay;
+	int		aux;
+	int		n;
 	t_map	map;
 	t_win	win;
 	t_img	img;
 }	t_sl;
+
+#endif

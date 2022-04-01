@@ -30,14 +30,15 @@ SRC_FILES=1_so_long.c\
 		  2_validation_maps.c\
 		  error_warning.c\
 		  3_window.c\
-		  4_game.c
+		  4_game.c\
+		  5_move.c
 
 SRC=$(addprefix $(SRC_PATH)/, $(SRC_FILES))
 OBJ=$(SRC:$(SRC_PATH)/%.c=$(OBJ_PATH)/%.o)
 
 # compilation **************************************************************** #
 CC=clang
-FLAG=-Wall -Werror -Wextra #-fsanitize=leak
+FLAG=-Wall -Werror -Wextra -fsanitize=leak
 GNL_FLAGS=-D BUFFER_SIZE=10
 MLXFLAGS=-lmlx -Ilmlx -lXext -lX11
 
@@ -55,6 +56,7 @@ $(OBJ_PATH)/%.o:	$(SRC_PATH)/%.c
 $(NAME):$(PRINTF) $(LIBFT) $(OBJ)
 		@$(CC) $(FLAG) $(GNL_FLAGS) -I $(HEADERS_PATH) -o $@ $(OBJ) \
 		$(GNL_PATH) $(LIBFT) $(PRINTF) $(MLXFLAGS)
+		norminette
 
 # message in terminal ************ #
 		@echo "\033[1;32m"

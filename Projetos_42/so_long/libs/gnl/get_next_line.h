@@ -13,8 +13,6 @@
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-#include "../../headers/so_long.h"
-
 char	*get_next_line(int fd);
 void	read_doc(int fd, char **buffer, char **bytes_read, char **result);
 void	line(char **bytes_read, char **result);
