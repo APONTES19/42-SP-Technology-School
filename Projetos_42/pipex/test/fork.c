@@ -1,21 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strutcs.h                                          :+:      :+:    :+:   */
+/*   fork.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/13 14:53:39 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/04/13 14:55:52 by lucasmar         ###   ########.fr       */
+/*   Created: 2022/04/13 14:56:20 by lucasmar          #+#    #+#             */
+/*   Updated: 2022/04/14 11:27:05 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STRUTCS_H
-# define STRUTCS_H
+# include <pipex.h>
 
-typedef struct pipex
+int	main(void)
 {
-	int	a;
-}	t_px;
+	t_px	px;
 
-#endif
+	px.a = 10;
+	px.pid = fork();
+	if (px.pid < 0)
+	{
+		perror("fork");
+		exit(0);
+	}
+	if (px.pid > 0)
+	{
+		wait(&px.pid);
+		px.a = 50;
+		ft_printf("\nPROCESSO PAI %d %p\n", px.a &px.a);
+	}
+	else
+	{
+		ft_printf("\nPROCESSO FILHO %d %p\n", px.a &px.a);
+	}
+	ft_printf("COMUM DOS PROCESSOS! %d %p\n", px.a &px.a);
+	return (0);
+}

@@ -6,13 +6,13 @@
 #    By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/13 13:33:04 by lucasmar          #+#    #+#              #
-#    Updated: 2022/04/13 17:15:15 by lucasmar         ###   ########.fr        #
+#    Updated: 2022/04/19 17:41:16 by lucasmar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Libs *********************************************************************** #
 
-PATH_HEADERS=./headers/
+PATH_HEADERS=./includes/
 PATH_PRINTF=./libs/ft_printf/
 PATH_LIBFT=./libs/libft/
 
@@ -26,7 +26,10 @@ NAME=pipex
 PATH_SRC=./src
 PATH_OBJ=./obj
 
-SRC_FILES=pi.c
+SRC_FILES=pipex.c\
+		  error.c\
+		  check_input.c\
+		  pi.c
 
 SRC=$(addprefix $(PATH_SRC)/, $(SRC_FILES))
 OBJ=$(SRC:$(PATH_SRC)/%.c=$(PATH_OBJ)/%.o)

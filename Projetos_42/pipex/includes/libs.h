@@ -1,21 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   libs.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/13 14:49:04 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/04/13 16:41:25 by lucasmar         ###   ########.fr       */
+/*   Created: 2022/04/13 15:00:22 by lucasmar          #+#    #+#             */
+/*   Updated: 2022/04/19 16:50:47 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#ifndef LIBS_H
+# define LIBS_H
 
-# include "./strutcs.h"
-# include "./libs.h"
-
-int	main(void);
+# include <stdio.h>
+# include <stdlib.h>
+# include <sys/types.h>
+# include <sys/wait.h>
+# include <unistd.h>
+# include <fcntl.h>
+# include "../libs/ft_printf/headers/ft_printf.h"
+# include "../libs/libft/headers/libft.h"
 
 #endif
