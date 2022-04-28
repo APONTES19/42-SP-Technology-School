@@ -6,30 +6,30 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 17:38:22 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/04/23 01:23:22 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/04/27 15:25:21 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <pipex.h>
 
-int	ft_check_input (int argc, char **argv, char **envp, t_px *px)
+int		ft_check_input (int argc, char **argv, char **envp, t_px *px)
 {
 	if (argc != 5)
 		ft_error_arg(1);
+	if (ft_check_files(px, argv, 'o') == -3)
+		ft_error_arg(3);
 	if (ft_check_files(px, argv, 't') == -2)
 		ft_error_arg(2);
 	ft_check_path(px, envp);
 	if(ft_check_cmd1(px, argv) == -1)
 		ft_error_arg(4);
-	if (ft_check_files(px, argv, 'o') == -3)
-		ft_error_arg(3);
-	if(ft_check_cmd2(px, argv) == -2)
+	if(ft_check_cmd2(px, argv) == -1)
 		ft_error_arg(5);
 	ft_printf("\n	Arguments OK ✓\n\n");
 	return (0);
 }
 
-int	ft_check_files(t_px *px, char **argv, char type)
+int		ft_check_files(t_px *px, char **argv, char type)
 {
 	if (type == 't')
 	{
@@ -65,36 +65,52 @@ void	ft_check_path(t_px *px, char **envp)
 	if (px->aux_temp == 0)
 		ft_error_arg(5);
 	px->path_envp = ft_split(px->aux_temp, ':');
-	px->aux_temp = NULL;
-	// fazer o free das funções auxtemp e join
+	px->aux_temp= NULL;
 	px->i = 0;
 	ft_printf ("	PATH OK ✓\n");
 }
 
-int	ft_check_cmd1(t_px *px, char **argv)
+int		ft_check_cmd1(t_px *px, char **argv)
 {
-		px->aux_temp = argv[2];
-		px->arg.cmd1 = ft_strjoin("/",px->aux_temp);
-		px->aux_temp = NULL;
-		px->aux_temp = px->arg.cmd1;
+		px->arg.cmd1 = ft_split(argv[2],' ');
+		px->aux_temp = ft_strjoin("/",px->arg.cmd1[0]);
 		while(px->path_envp[px->i])
 		{
-			px->arg.cmd1 = ft_strjoin(px->path_envp[px->i], px->aux_temp);
-			px->a = access(px->arg.cmd1, F_OK | X_OK);
+			px->path_cmd1 = ft_strjoin(px->path_envp[px->i], px->aux_temp);
+			px->a = access(px->path_cmd1, F_OK | X_OK);
 			if (px->a == 0)
 				break;
-			px->arg.cmd1 = NULL;
+			free(px->path_cmd1);
+			px->path_cmd1 = NULL;
 			px->i++;
 		}
+		free(px->aux_temp);
+		px->aux_temp = NULL;
+		px->i = 0;
 		if (px->a != 0)
 			return(-1);
 		ft_printf ("	Cmd1 OK ✓\n");
 		return(0);
 }
 
-int	ft_check_cmd2(t_px *px, char **argv)
+int		ft_check_cmd2(t_px *px, char **argv)
 {
-	px->arg.cmd2 = argv[3];
-	//ft_printf ("	Cmd2 OK ✓\n");
+	px->arg.cmd2 = ft_split(argv[3], ' ');
+	px->aux_temp = ft_strjoin("/",px->arg.cmd2[0]);
+		while(px->path_envp[px->i])
+	{
+		px->path_cmd2 = ft_strjoin(px->path_envp[px->i], px->aux_temp);
+		px->a = access(px->path_cmd2, F_OK | X_OK);
+		if (px->a == 0)
+			break;
+		free(px->path_cmd2);
+		px->path_cmd2 = NULL;
+		px->i++;
+	}
+	free(px->aux_temp);
+	px->aux_temp = NULL;
+	if (px->a != 0)
+		return(-1);
+	ft_printf ("	Cmd2 OK ✓\n");
 	return (0);
 }

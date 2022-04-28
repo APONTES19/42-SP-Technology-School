@@ -6,7 +6,7 @@
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 14:56:20 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/04/19 18:24:08 by lucasmar         ###   ########.fr       */
+/*   Updated: 2022/04/25 19:26:18 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	teste(void)
 {
-	int pid;
+	int	pid;
 	int	fd[2];
 	int	pepi;
 	char	saida[6];

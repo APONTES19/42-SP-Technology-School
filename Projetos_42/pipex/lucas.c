@@ -21,7 +21,7 @@ int	main(int argc, char **argv, char **envp)
 
 	ft_init_pipex(&data);
 	##########################################
-			void	ft_init_pipex(t_data *data)
+		void	ft_init_pipex(t_data *data)
 		{
 			ft_check_argc(data);
 				##########################################
@@ -42,7 +42,7 @@ int	main(int argc, char **argv, char **envp)
 	data.pid1 = fork();
 	ft_check_fork(data.pid1);
 	##########################################
-			void	ft_check_fork(int pid)
+		void	ft_check_fork(int pid)
 		{
 			if (pid == -1)
 			{
@@ -77,10 +77,10 @@ int	main(int argc, char **argv, char **envp)
 							t_token	token;
 
 							token.flag = FALSE;
-							token.start = ft_strchr(data->cmd.str, SNG_QUOTE);
+							token.start = ft_strchr(data->cmd.str, '\'');
 							if (token.start)
 							{
-								token.end = ft_strrchr(data->cmd.str, SNG_QUOTE);
+								token.end = ft_strrchr(data->cmd.str, '\'');
 								if (token.start != token.end && token.start[1] != token.end[0])
 								{
 									token.str = ft_substr(token.start, 1, \
@@ -145,8 +145,8 @@ int	main(int argc, char **argv, char **envp)
 										}
 									##########################################
 
-									arr = ft_split(path, COLON);
-									cmd = ft_strjoin(SLASH, data->cmd.args[0]);
+									arr = ft_split(path, ':');
+									cmd = ft_strjoin('/', data->cmd.args[0]);
 									while (arr[++i])
 									{
 										data->cmd.path = ft_strjoin(arr[i], cmd);
@@ -209,8 +209,8 @@ int	main(int argc, char **argv, char **envp)
 								}
 
 							##########################################
-							dup2(data->infile.fd, STDIN_FILENO);
-							dup2(data->fd[WRITE], STDOUT_FILENO);
+							dup2(data->infile.fd, 0);
+							dup2(data->fd[WRITE], 1);
 							close(data->fd[WRITE]);
 							close(data->fd[READ]);
 							close(data->infile.fd);
@@ -222,7 +222,7 @@ int	main(int argc, char **argv, char **envp)
 						{
 							if (!data->infile.file_ok)
 							{
-								write(STDOUT_FILENO, "\0", 1);
+								write(1, "\0", 1);
 								return ;
 							}
 							if (!data->cmd.path || execve(data->cmd.path, data->cmd.args, data->env_p) == -1)
