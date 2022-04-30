@@ -6,7 +6,7 @@
 #    By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/13 13:33:04 by lucasmar          #+#    #+#              #
-#    Updated: 2022/04/26 15:55:56 by lucasmar         ###   ########.fr        #
+#    Updated: 2022/04/30 15:32:08 by lucasmar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,11 +26,11 @@ NAME=pipex
 PATH_SRC=./src
 PATH_OBJ=./obj
 
-SRC_FILES=pipex.c\
+SRC_FILES=process.c\
 		  error.c\
 		  check_input.c\
-		  pi.c\
-		  process.c
+		  pipex.c
+
 
 SRC=$(addprefix $(PATH_SRC)/, $(SRC_FILES))
 OBJ=$(SRC:$(PATH_SRC)/%.c=$(PATH_OBJ)/%.o)
