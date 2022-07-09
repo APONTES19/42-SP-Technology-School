@@ -6,7 +6,7 @@
 #    By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/23 13:45:23 by lucasmar          #+#    #+#              #
-#    Updated: 2022/06/30 15:54:02 by lucasmar         ###   ########.fr        #
+#    Updated: 2022/07/09 18:41:14 by lucasmar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,14 +25,21 @@ SRC_PATH=./src
 OBJ_PATH=./obj
 
 SRC_FILES=push_swap.c\
-		  ft_long_atoi.c
+		  ft_long_atoi.c\
+		  check_input.c\
+		  error.c\
+		  swap.c\
+		  push.c\
+		  shift_down.c\
+		  shift_up.c\
+		  sort.c
 
 SRC=$(addprefix $(SRC_PATH)/, $(SRC_FILES))
 OBJ=$(SRC:$(SRC_PATH)/%.c=$(OBJ_PATH)/%.o)
 
 # compilation **************************************************************** #
 CC=cc
-FLAG=-Wall -Werror -Wextra #-fsanitize=leak
+FLAG=-Wall -Werror -Wextra #-fsanitize=address -g3
 
 # clean ********************************************************************** #
 RM=-rm -f
@@ -48,8 +55,6 @@ $(OBJ_PATH)/%.o:	$(SRC_PATH)/%.c
 $(NAME):$(PRINTF) $(LIBFT) $(OBJ)
 		@$(CC) $(FLAG) $(GNL_FLAGS) -I $(HEADERS_PATH) -o $@ $(OBJ) \
 		$(LIBFT) $(PRINTF)
-##norminette
-
 # message in terminal ************ #
 		@echo "\033[1;32m"
 		@echo "	Push_swap created ✓"

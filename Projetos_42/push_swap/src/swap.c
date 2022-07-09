@@ -1,47 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_long_atoi.c                                     :+:      :+:    :+:   */
+/*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/30 15:51:04 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/07/09 18:22:04 by lucasmar         ###   ########.fr       */
+/*   Created: 2022/07/01 11:18:37 by lucasmar          #+#    #+#             */
+/*   Updated: 2022/07/09 08:29:22 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <../includes/push_swap.h>
 
-static int	ft_space(char c);
-
-long	ft_long_atoi(const char *str)
+void	ft_sa(t_ps *ps, char *mov)
 {
-	long	a;
-	long	r;
-	long	c;
-
-	c = 1;
-	a = 0;
-	r = 0;
-	while (ft_space(*str))
-		str++;
-	if (*str == '-' || *str == '+')
-	{
-		if (*str == '-')
-			c = -1;
-		str++;
-	}
-	while (*str >= '0' && *str <= '9')
-	{
-		r = (r * 10) + ((*str++) - '0');
-		a++;
-	}
-	return (r * c);
+	ft_swap(ps->stack_a, ps->size_sta, mov);
 }
 
-static int	ft_space(char c)
+void	ft_sb(t_ps *ps, char *mov)
 {
-	if (c == 32 || (c >= 9 && c <= 13))
-		return (1);
-	return (0);
+	ft_swap(ps->stack_b, ps-> size_stb, mov);
+}
+
+void	ft_ss(t_ps *ps, char *mov)
+{
+	ft_sa(ps, "void");
+	ft_sb(ps, "void");
+	ft_put_mov(mov);
+}
+
+void	ft_swap(int *stack, int size_st, char *mov)
+{
+	int	temp;
+
+	temp = stack[0];
+	if (size_st > 1)
+	{
+		stack[0] = stack[1];
+		stack[1] = temp;
+		ft_put_mov(mov);
+	}
 }

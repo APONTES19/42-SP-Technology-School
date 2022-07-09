@@ -6,7 +6,7 @@
 #    By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/09 13:32:07 by lucasmar          #+#    #+#              #
-#    Updated: 2022/06/24 10:03:34 by lucasmar         ###   ########.fr        #
+#    Updated: 2022/07/09 09:35:43 by lucasmar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME=libftprintf.a
 
 SRC_PATH=./src
 OBJ_PATH=./obj
-HEADERS_PATH=./includes
+HEADERS_PATH=./headers
 
 FILES=ft_printf.c\
 	ft_putc.c\
@@ -31,7 +31,7 @@ OBJ=$(SRC:$(SRC_PATH)/%.c=$(OBJ_PATH)/%.o)
 LIBRARY = ar -rcs
 
 # compilation **************************************************************** #
-CC=clang
+CC=cc
 FLAGS=-Wall -Wextra -Werror
 
 # clear ********************************************************************** #
@@ -41,7 +41,7 @@ RM_DIR=rm -rf
 # rules ********************************************************************** #
 $(OBJ_PATH)/%.o:$(SRC_PATH)/%.c
 	@mkdir -p $(OBJ_PATH)
-	@$(CC) $(FLAGS) -I $(HEADERS_PATH) -c $< -o $@
+	@$(CC) -fPIE $(FLAGS) -I $(HEADERS_PATH) -c $< -o $@
 
 $(NAME):$(OBJ)
 		@${LIBRARY} $@ $(OBJ)

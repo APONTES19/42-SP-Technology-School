@@ -1,21 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libs.h                                             :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucasmar < lucasmar@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/23 17:49:39 by lucasmar          #+#    #+#             */
-/*   Updated: 2022/07/09 18:35:26 by lucasmar         ###   ########.fr       */
+/*   Created: 2022/06/30 16:45:38 by lucasmar          #+#    #+#             */
+/*   Updated: 2022/07/09 09:56:37 by lucasmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBS_H
-# define LIBS_H
+#include <../includes/push_swap.h>
 
-# include <stdio.h>
-# include "../libs/ft_printf/headers/ft_printf.h"
-# include "../libs/libft/includes/libft.h"
-# include <stdlib.h>
+void	ft_error(int n_error, t_ps *ps)
+{
+	if (n_error == 1)
+	{
+		ft_printf("Error\n");
+		exit(EXIT_FAILURE);
+	}
+	if (n_error == 2)
+	{
+		ft_printf("Error\n");
+		ft_end_free(ps, 2);
+	}
+	exit(EXIT_FAILURE);
+}
 
-#endif
+void	ft_end_free(t_ps *ps, int type)
+{
+	free(ps->stack_a);
+	free(ps->stack_b);
+	ft_memset(&ps, 0, sizeof ps);
+	if (type == 2)
+		exit(EXIT_FAILURE);
+}
